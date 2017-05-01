@@ -17,6 +17,7 @@ const page = db.define('page', {
   urlTitle: {type: Sequelize.STRING, allowNull: false, isUrl: true},
   content: {type: Sequelize.TEXT, allowNull: false},
   status: {type: Sequelize.ENUM('open', 'closed')},
+  tags: {type: Sequelize.ARRAY(Sequelize.STRING)},
   date: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
@@ -30,6 +31,17 @@ const page = db.define('page', {
   hooks: {
     beforeValidate: function(page, options){
       page.urlTitle = generateUrlTitle(page.title);
+    }
+  },
+  classMethods: {
+    findByTag: function(tag) {
+      this.findAll({
+        where: {
+          tags: {
+            $overlap: [tag]
+          }
+        }
+      });
     }
   }
 });

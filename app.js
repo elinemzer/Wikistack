@@ -26,7 +26,7 @@ app.use('/', routes);
 // .then(function(){
   //return models.page.sync()
 // })
-models.db.sync({ force:true })
+models.db.sync()
 .then(function(){
   app.listen(1337, function(){
     console.log('Im listening')

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>Search by Tag</h3>
+  <hr>
+  <form method="GET" action="/wiki/search">
+    <div class="form-group">
+      <label for="tag" class="col-sm-2 control-label">Tags</label>
+      <div class="col-sm-10">
+        <input name="tag" type="text" class="form-control"/>
+      </div>
+    </div>
+  </form>
+{% endblock %}
