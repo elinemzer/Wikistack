@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const morgan = require('morgan');
+const routes = require('./routes')
 
 const models = require('./models')
 
@@ -18,10 +19,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res, next){
-  res.sendFile('index.html');
-  next()
-})
+app.use('/', routes);
 
 // models.user.sync()
 // .then(function(){
